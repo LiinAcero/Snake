@@ -36,6 +36,7 @@ namespace Snake
             InitializeComponent();
 
 
+
             const int Rows = 10;
             const int Cols = 10;
 
@@ -49,6 +50,15 @@ namespace Snake
 
 
             
+=======
+            
+            gameBoard.BackColor = Color.Black;
+            gameBoard.Width = GameBoardWidth * SnakeSize;
+            gameBoard.Height = GameBoardHeight * SnakeSize;
+
+            
+            gameLoop.Start();
+>>>>>>> d684cb16e4f23f4110bee967548e23cb4e568075
         }
 
 
@@ -77,6 +87,28 @@ namespace Snake
         private void timer1_Tick(object sender, EventArgs e)
         {
 
+
         }   
     }
 }
+=======
+            
+            if (head == _food)
+            {
+                _snake.Add(_snake[0]);
+                _food = new Point(_random.Next(0, GameBoardWidth) * SnakeSize,
+                                  _random.Next(0, GameBoardHeight) * SnakeSize);
+                _score++;
+            }
+            else if (head.X < 0 || head.X >= gameBoard.Width ||
+                     head.Y < 0 || head.Y >= gameBoard.Height ||
+                     _snake.Contains(head))
+            {
+                
+                _gameOver = true;
+                gameLoop.Stop();
+            }
+
+            
+            for (var i = 0; i < _snake.Count;
+
