@@ -1,5 +1,18 @@
+using System.Drawing.Text;
+
 namespace Snake
 {
+     class Circle
+    {
+        public int x { get; set; }
+        public int y { get; set; }
+
+        public Circle()
+        {
+            x = 0;
+            y = 0;
+        }
+    }
     public partial class Snake : Form
     {
         private const int GameBoardWidth = 20;
@@ -13,6 +26,39 @@ namespace Snake
 
         private int _score;
         private bool _gameOver;
+
+        private List<Circle> SnakeBod = new List<Circle>();
+        private Circle food = new Circle();
+        private void startGame()
+        {
+
+        }
+        private void movePlayer() {
+        }
+
+        private void genFood()
+        {
+
+        }
+
+        private void eat()
+        {
+
+        }
+
+        private void die()
+        {
+
+        }
+
+        private void pictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            Rectangle ee = new Rectangle(10, 10, 30, 30);
+            using (Pen pen = new Pen(Color.Black, 2))
+            {
+                e.Graphics.DrawRectangle(pen, ee);
+            }
+        }
 
         public enum Direction
         {
@@ -34,6 +80,10 @@ namespace Snake
             int[,] gameBoard = new int[Rows, Cols];
 
             gameBoard[0, 0] = 1;
+
+            
+
+            
 
 
             
@@ -68,6 +118,17 @@ namespace Snake
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-        }   
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            timer.Start();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
