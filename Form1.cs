@@ -1,6 +1,6 @@
 namespace Snake
 {
-    public partial class Form1 : Form
+    public partial class Snake : Form
     {
         private const int GameBoardWidth = 20;
         private const int GameBoardHeight = 20;
@@ -24,7 +24,7 @@ namespace Snake
 
         private Direction _direction = Direction.Right;
 
-        public Form1()
+        public Snake()
         {
             InitializeComponent();
 

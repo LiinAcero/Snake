@@ -1,6 +1,6 @@
 ﻿namespace Snake
 {
-    partial class Form1
+    partial class Snake
     {
         /// <summary>
         ///  Required designer variable.
@@ -37,19 +37,19 @@
             this.pictureBox1.Location = new System.Drawing.Point(10, 24);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(263, 331);
+            this.pictureBox1.Size = new System.Drawing.Size(400, 400);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // Snake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 389);
+            this.ClientSize = new System.Drawing.Size(676, 467);
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Snake";
+            this.Text = "Snake";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
