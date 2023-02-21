@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pbCanvas = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,16 +45,6 @@
             this.pbCanvas.Size = new System.Drawing.Size(541, 560);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(616, 350);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // timer
             // 
@@ -99,7 +88,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.pbCanvas);
             this.Name = "Snake";
             this.Text = "Snake";
@@ -114,7 +102,6 @@
 
         private PictureBox pbCanvas;
         private System.Windows.Forms.Timer timer1;
-        private Button button1;
         private System.Windows.Forms.Timer timer;
         private Label label1;
         private Label label2;

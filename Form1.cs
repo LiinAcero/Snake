@@ -1,5 +1,30 @@
+using System.Collections;
+
 namespace Snake
 {
+
+    class Input
+    {
+        private static Hashtable keyTable = new Hashtable();
+        public static bool KeyPress(Keys key)
+        {
+            
+            if (keyTable[key] == null)
+            {
+                
+                return false;
+            }
+            
+            return (bool)keyTable[key];
+        }
+
+        public static void changeState(Keys key, bool state)
+        {
+            
+            keyTable[key] = state;
+        }
+
+    }
     public partial class Snake : Form
     {
         private readonly Random random = new Random();
@@ -27,6 +52,15 @@ namespace Snake
             timer.Start();
 
             generateFood();
+        }
+        private void keyisdown(object sender, KeyEventArgs e)
+        {
+            Input.changeState(e.KeyCode, true);
+        }
+
+        private void keyisup(object sender, KeyEventArgs e)
+        {
+            Input.changeState(e.KeyCode, false);
         }
 
         private void updateGraphics(object sender, PaintEventArgs e)
@@ -67,6 +101,45 @@ namespace Snake
                 label3.Text = GameOver;
                 label3.Visible = true;
             }
+        }
+
+        private void updateScreen(object sender, EventArgs e)
+        {
+
+            if (settings.GameOver == true)
+            {
+
+                if (Input.KeyPress(Keys.Enter))
+                {
+                    startGame();
+                }
+            }
+            else
+            {
+                
+
+                if (Input.KeyPress(Keys.Right) && settings.Direction != Direction.Left)
+                {
+                    settings.Direction = Direction.Right;
+                }
+                else if (Input.KeyPress(Keys.Left) && settings.Direction != Direction.Right)
+                {
+                    settings.Direction = Direction.Left;
+                }
+                else if (Input.KeyPress(Keys.Up) && settings.Direction != Direction.Down)
+                {
+                    settings.Direction = Direction.Up;
+                }
+                else if (Input.KeyPress(Keys.Down) && settings.Direction != Direction.Up)
+                {
+                    settings.Direction = Direction.Down;
+                }
+
+                movePlayer();
+            }
+
+            pbCanvas.Invalidate(); 
+
         }
 
         private void movePlayer()
@@ -174,10 +247,7 @@ namespace Snake
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            timer.Start();
-        }
+       
 
         private void timer2_Tick(object sender, EventArgs e)
         {
