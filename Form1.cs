@@ -2,29 +2,6 @@ using System.Collections;
 
 namespace Snake
 {
-
-    class Input
-    {
-        private static Hashtable keyTable = new Hashtable();
-        public static bool KeyPress(Keys key)
-        {
-            
-            if (keyTable[key] == null)
-            {
-                
-                return false;
-            }
-            
-            return (bool)keyTable[key];
-        }
-
-        public static void changeState(Keys key, bool state)
-        {
-            
-            keyTable[key] = state;
-        }
-
-    }
     public partial class Snake : Form
     {
         private readonly Random random = new Random();
@@ -32,6 +9,29 @@ namespace Snake
         private List<Circle> SnakeBod = new List<Circle>();
         private Circle food = new Circle();
         private Settings settings = new Settings();
+
+        class Input
+        {
+            private static Hashtable keyTable = new Hashtable();
+            public static bool KeyPress(Keys key)
+            {
+
+                if (keyTable[key] == null)
+                {
+
+                    return false;
+                }
+
+                return (bool)keyTable[key];
+            }
+
+            public static void changeState(Keys key, bool state)
+            {
+
+                keyTable[key] = state;
+            }
+
+        }
 
         public Snake()
         {
@@ -250,6 +250,11 @@ namespace Snake
        
 
         private void timer2_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             
         }
