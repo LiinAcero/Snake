@@ -22,9 +22,9 @@
 
     public class Settings
     {
-        public static int Width { get; set; }
-        public static int Height { get; set; }
-        public static int Speed { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int Speed { get; set; }
         public int Score { get; set; }
         public int Points { get; set; }
         public bool GameOver { get; set; }

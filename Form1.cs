@@ -21,15 +21,18 @@ namespace Snake
             Circle head = new Circle { x = 10, y = 5 };
             SnakeBod.Add(head);
 
-            label2.Text = Settings.Score.ToString();
+            label2.Text = settings.Score.ToString();
+
+            timer.Interval = 1000 / settings.Speed;
+            timer.Start();
 
             generateFood();
         }
 
-        private void updateGraphics(object sender, KeyEventArgs e)
+        private void updateGraphics(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
-            if (Settings.GameOver ==false)
+            if (settings.GameOver ==false)
             {
                 Brush snakeColor;
 
@@ -45,21 +48,22 @@ namespace Snake
                     }
                     canvas.FillEllipse(snakeColor,
                         new Rectangle(
-                            SnakeBod[i].x * Settings.Width,
-                            SnakeBod[i].y * Settings.Height
+                            SnakeBod[i].x * settings.Width,
+                            SnakeBod[i].y * settings.Height,
+                            settings.Width, settings.Height
                             ));
 
                     canvas.FillEllipse(Brushes.Red,
                                         new Rectangle(
-                                            food.x * Settings.Width,
-                                            food.y * Settings.Height,
-                                            Settings.Width, Settings.Height
+                                            food.x * settings.Width,
+                                            food.y * settings.Height,
+                                            settings.Width, settings.Height
                                             ));
                 }
             }
             else
             {
-                string GameOver = "Game Over \n" + "Final Score is " + Settings.Score + "\n Press Enter to Restart \n";
+                string GameOver = "Game Over \n" + "Final Score is " + settings.Score + "\n Press Enter to Restart \n";
                 label3.Text = GameOver;
                 label3.Visible = true;
             }
@@ -71,7 +75,7 @@ namespace Snake
             {
                 if (i == 0)
                 {
-                    switch (Settings.Direction)
+                    switch (settings.Direction)
                     {
                         case Direction.Right:
                             SnakeBod[i].x++;
@@ -87,8 +91,8 @@ namespace Snake
                             break;
                     }
 
-                    int maxxpos = pbCanvas.Size.Width / Settings.Width;
-                    int maxypos = pbCanvas.Size.Height / Settings.Height;
+                    int maxxpos = pbCanvas.Size.Width / settings.Width;
+                    int maxypos = pbCanvas.Size.Height / settings.Height;
 
                     if (
                         SnakeBod[i].x < 0 || SnakeBod[i].y < 0 ||
@@ -123,8 +127,8 @@ namespace Snake
 
         private void generateFood()
         {
-            int maxxpos = pbCanvas.Size.Width / Settings.Width;
-            int maxypos = pbCanvas.Size.Height / Settings.Height;
+            int maxxpos = pbCanvas.Size.Width / settings.Width;
+            int maxypos = pbCanvas.Size.Height / settings.Height;
             Random rnd = new Random();
             food = new Circle { x = rnd.Next(0, maxxpos), y = rnd.Next(0, maxypos) };
         }
@@ -138,8 +142,8 @@ namespace Snake
             };
 
             SnakeBod.Add(body);
-            Settings.Score += Settings.Points;
-            label2.Text = Settings.Score.ToString();
+            settings.Score += settings.Points;
+            label2.Text = settings.Score.ToString();
             generateFood();
         }
 
@@ -177,8 +181,7 @@ namespace Snake
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            timer.Interval = 1000 / Settings.Speed;
-            timer.Start();
+            
         }
     }
 }
