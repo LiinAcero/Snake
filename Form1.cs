@@ -10,29 +10,6 @@ namespace Snake
         private Circle food = new Circle();
         private Settings settings = new Settings();
 
-        class Input
-        {
-            private static Hashtable keyTable = new Hashtable();
-            public static bool KeyPress(Keys key)
-            {
-
-                if (keyTable[key] == null)
-                {
-
-                    return false;
-                }
-
-                return (bool)keyTable[key];
-            }
-
-            public static void changeState(Keys key, bool state)
-            {
-
-                keyTable[key] = state;
-            }
-
-        }
-
         public Snake()
         {
             InitializeComponent();
@@ -205,6 +182,30 @@ namespace Snake
             Random rnd = new Random();
             food = new Circle { x = rnd.Next(0, maxxpos), y = rnd.Next(0, maxypos) };
         }
+
+        class Input
+        {
+            private static Hashtable keyTable = new Hashtable();
+            public static bool KeyPress(Keys key)
+            {
+
+                if (keyTable[key] == null)
+                {
+
+                    return false;
+                }
+
+                return (bool)keyTable[key];
+            }
+
+            public static void changeState(Keys key, bool state)
+            {
+
+                keyTable[key] = state;
+            }
+
+        }
+
 
         private void eat()
         {
