@@ -30,6 +30,7 @@ namespace Snake
 
             generateFood();
         }
+
         private void keyisdown(object sender, KeyEventArgs e)
         {
             Input.changeState(e.KeyCode, true);
@@ -43,7 +44,7 @@ namespace Snake
         private void updateGraphics(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
-            if (settings.GameOver ==false)
+            if (settings.GameOver == false)
             {
                 Brush snakeColor;
 
@@ -55,7 +56,7 @@ namespace Snake
                     }
                     else
                     {
-                        snakeColor= Brushes.Green;
+                        snakeColor = Brushes.Green;
                     }
                     canvas.FillEllipse(snakeColor,
                         new Rectangle(
@@ -82,10 +83,8 @@ namespace Snake
 
         private void updateScreen(object sender, EventArgs e)
         {
-
             if (settings.GameOver == true)
             {
-
                 if (Input.KeyPress(Keys.Enter))
                 {
                     startGame();
@@ -93,8 +92,6 @@ namespace Snake
             }
             else
             {
-                
-
                 if (Input.KeyPress(Keys.Right) && settings.Direction != Direction.Left)
                 {
                     settings.Direction = Direction.Right;
@@ -115,13 +112,12 @@ namespace Snake
                 movePlayer();
             }
 
-            pbCanvas.Invalidate(); 
-
+            pbCanvas.Invalidate();
         }
 
         private void movePlayer()
         {
-            for (int i = SnakeBod.Count - 1; i >= 0; i --  )
+            for (int i = SnakeBod.Count - 1; i >= 0; i--)
             {
                 if (i == 0)
                 {
@@ -130,12 +126,15 @@ namespace Snake
                         case Direction.Right:
                             SnakeBod[i].x++;
                             break;
+
                         case Direction.Left:
                             SnakeBod[i].x--;
                             break;
+
                         case Direction.Up:
                             SnakeBod[i].y--;
                             break;
+
                         case Direction.Down:
                             SnakeBod[i].y++;
                             break;
@@ -164,11 +163,9 @@ namespace Snake
                     {
                         eat();
                     }
-
                 }
                 else
                 {
-                    
                     SnakeBod[i].x = SnakeBod[i - 1].x;
                     SnakeBod[i].y = SnakeBod[i - 1].y;
                 }
@@ -182,30 +179,6 @@ namespace Snake
             Random rnd = new Random();
             food = new Circle { x = rnd.Next(0, maxxpos), y = rnd.Next(0, maxypos) };
         }
-
-        class Input
-        {
-            private static Hashtable keyTable = new Hashtable();
-            public static bool KeyPress(Keys key)
-            {
-
-                if (keyTable[key] == null)
-                {
-
-                    return false;
-                }
-
-                return (bool)keyTable[key];
-            }
-
-            public static void changeState(Keys key, bool state)
-            {
-
-                keyTable[key] = state;
-            }
-
-        }
-
 
         private void eat()
         {
@@ -248,16 +221,32 @@ namespace Snake
             }
         }
 
-       
-
         private void timer2_Tick(object sender, EventArgs e)
         {
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+        }
+    }
+
+    internal class Input
+    {
+        private static Hashtable keyTable = new Hashtable();
+
+        public static bool KeyPress(Keys key)
+        {
+            if (keyTable[key] == null)
+            {
+                return false;
+            }
+
+            return (bool)keyTable[key];
+        }
+
+        public static void changeState(Keys key, bool state)
+        {
+            keyTable[key] = state;
         }
     }
 }
