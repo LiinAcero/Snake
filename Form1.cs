@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace Snake
 {
     public partial class Snake : Form
@@ -18,7 +16,7 @@ namespace Snake
         private void startGame()
         {
             label3.Visible = false;
-            new Settings();
+            settings = new Settings();
             SnakeBod.Clear();
             Circle head = new Circle { x = 10, y = 5 };
             SnakeBod.Add(head);
@@ -29,16 +27,6 @@ namespace Snake
             timer.Start();
 
             generateFood();
-        }
-
-        private void keyisdown(object sender, KeyEventArgs e)
-        {
-            Input.changeState(e.KeyCode, true);
-        }
-
-        private void keyisup(object sender, KeyEventArgs e)
-        {
-            Input.changeState(e.KeyCode, false);
         }
 
         private void updateGraphics(object sender, PaintEventArgs e)
@@ -81,40 +69,6 @@ namespace Snake
             }
         }
 
-        private void updateScreen(object sender, EventArgs e)
-        {
-            if (settings.GameOver == true)
-            {
-                if (Input.KeyPress(Keys.Enter))
-                {
-                    startGame();
-                }
-            }
-            else
-            {
-                if (Input.KeyPress(Keys.Right) && settings.Direction != Direction.Left)
-                {
-                    settings.Direction = Direction.Right;
-                }
-                else if (Input.KeyPress(Keys.Left) && settings.Direction != Direction.Right)
-                {
-                    settings.Direction = Direction.Left;
-                }
-                else if (Input.KeyPress(Keys.Up) && settings.Direction != Direction.Down)
-                {
-                    settings.Direction = Direction.Up;
-                }
-                else if (Input.KeyPress(Keys.Down) && settings.Direction != Direction.Up)
-                {
-                    settings.Direction = Direction.Down;
-                }
-
-                movePlayer();
-            }
-
-            pbCanvas.Invalidate();
-        }
-
         private void movePlayer()
         {
             for (int i = SnakeBod.Count - 1; i >= 0; i--)
@@ -146,20 +100,20 @@ namespace Snake
                     if (
                         SnakeBod[i].x < 0 || SnakeBod[i].y < 0 ||
                         SnakeBod[i].x > maxxpos || SnakeBod[i].y > maxypos
-                        ) ;
+                        )
                     {
                         die();
                     }
 
                     for (int j = 1; j < SnakeBod.Count; j++)
                     {
-                        if (SnakeBod[i].x == SnakeBod[j].x && SnakeBod[i].x == SnakeBod[j].x)
+                        if (SnakeBod[i].x == SnakeBod[j].x && SnakeBod[i].y == SnakeBod[j].y)
                         {
                             die();
                         }
                     }
 
-                    if (SnakeBod[0].x == food.x && SnakeBod[0].x == food.y)
+                    if (SnakeBod[0].x == food.x && SnakeBod[0].y == food.y)
                     {
                         eat();
                     }
@@ -176,8 +130,7 @@ namespace Snake
         {
             int maxxpos = pbCanvas.Size.Width / settings.Width;
             int maxypos = pbCanvas.Size.Height / settings.Height;
-            Random rnd = new Random();
-            food = new Circle { x = rnd.Next(0, maxxpos), y = rnd.Next(0, maxypos) };
+            food = new Circle { x = random.Next(0, maxxpos), y = random.Next(0, maxypos) };
         }
 
         private void eat()
@@ -197,25 +150,26 @@ namespace Snake
         private void die()
         {
             settings.GameOver = true;
+            timer.Stop();
         }
 
         private void Form1_KeyDown_1(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.Left:
+                case Keys.A:
                     settings.Direction = Direction.Left;
                     break;
 
-                case Keys.Right:
+                case Keys.D:
                     settings.Direction = Direction.Right;
                     break;
 
-                case Keys.Up:
+                case Keys.W:
                     settings.Direction = Direction.Up;
                     break;
 
-                case Keys.Down:
+                case Keys.S:
                     settings.Direction = Direction.Down;
                     break;
             }
@@ -223,30 +177,13 @@ namespace Snake
 
         private void timer2_Tick(object sender, EventArgs e)
         {
+            movePlayer();
+            pbCanvas.Invalidate();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-        }
-    }
-
-    internal class Input
-    {
-        private static Hashtable keyTable = new Hashtable();
-
-        public static bool KeyPress(Keys key)
-        {
-            if (keyTable[key] == null)
-            {
-                return false;
-            }
-
-            return (bool)keyTable[key];
-        }
-
-        public static void changeState(Keys key, bool state)
-        {
-            keyTable[key] = state;
+            startGame();
         }
     }
 }

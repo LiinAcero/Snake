@@ -41,11 +41,13 @@
             // pbCanvas
             // 
             this.pbCanvas.BackColor = System.Drawing.SystemColors.GrayText;
-            this.pbCanvas.Location = new System.Drawing.Point(13, 13);
+            this.pbCanvas.Location = new System.Drawing.Point(11, 10);
+            this.pbCanvas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(541, 560);
+            this.pbCanvas.Size = new System.Drawing.Size(473, 420);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
+            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.updateGraphics);
             // 
             // timer
             // 
@@ -55,18 +57,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(616, 30);
+            this.label1.Location = new System.Drawing.Point(539, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 20);
+            this.label1.Size = new System.Drawing.Size(39, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Score:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(668, 30);
+            this.label2.Location = new System.Drawing.Point(584, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 20);
+            this.label2.Size = new System.Drawing.Size(19, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "00";
             // 
@@ -75,17 +77,18 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Black;
             this.label3.ForeColor = System.Drawing.Color.Yellow;
-            this.label3.Location = new System.Drawing.Point(215, 226);
+            this.label3.Location = new System.Drawing.Point(188, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 20);
+            this.label3.Size = new System.Drawing.Size(51, 15);
             this.label3.TabIndex = 4;
             this.label3.Text = "End Text";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(633, 320);
+            this.button1.Location = new System.Drawing.Point(554, 240);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.Size = new System.Drawing.Size(82, 22);
             this.button1.TabIndex = 5;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
@@ -93,14 +96,16 @@
             // 
             // Snake
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 606);
+            this.ClientSize = new System.Drawing.Size(676, 454);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbCanvas);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Snake";
             this.Text = "Snake";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown_1);
